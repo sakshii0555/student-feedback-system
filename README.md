@@ -22,25 +22,6 @@ This system allows students to submit feedback through a web-based form. The sub
 
 ---
 
-## ▶️ How to Run the Project 
-
-1. Open Command Prompt and navigate to the backend folder.
-    
-2. Compile the backend server using GCC:
-   gcc server.c -o server -lws2_32
-   
-3. Run the server:
-   server
-   
-4. The server will start running at:
-   http://localhost:8080  
-   
-5. Open the frontend by double-clicking:
-   frontend/index.html
-
-6. Fill in the feedback form and click Submit.  
-   The feedback will be sent to the C backend server and stored locally.
-
 ## ⭐ Key Features
 
 - API-based frontend and backend integration  
@@ -61,27 +42,28 @@ This project demonstrates the practical implementation of:
 - File handling in C  
 - Full-stack development without frameworks
 
+---
 
-▶️ How to Run the Project (Windows)
+## ▶️ How to Run the Project 
 
-1. Open Command Prompt and navigate to the backend directory:
-   cd backend
-
+1. Open Command Prompt and navigate to the backend folder.
+    
 2. Compile the backend server using GCC:
    gcc server.c -o server -lws2_32
-
+   
 3. Run the server:
    server
-
-4. The backend server will start at:
+   
+4. The server will start running at:
    http://localhost:8080  
-   (Keep the terminal open while using the application.)
-
-5. Open the frontend by opening the following file in a web browser:
+   
+5. Open the frontend by double-clicking:
    frontend/index.html
 
 6. Fill in the feedback form and click Submit.  
-   The submitted feedback will be sent to the C backend server and stored locally.
+   The feedback will be sent to the C backend server and stored locally.
+
+
 
  👩‍💻Author: Sakshi Rawat
 
