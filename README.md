@@ -63,6 +63,14 @@ This project demonstrates the practical implementation of:
 6. Fill in the feedback form and click Submit.  
    The feedback will be sent to the C backend server and stored locally.
 
+---
+
+## 🌐 Live Demo
+
+Frontend UI (GitHub Pages):  
+https://sakshii0555.github.io/student-feedback-system/
+
+
 
 
 
