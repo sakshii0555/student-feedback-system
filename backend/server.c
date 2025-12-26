@@ -11,24 +11,20 @@ int main() {
     SOCKET server_socket, client_socket;
     struct sockaddr_in server, client;
     int c;
-    char buffer[4096];
+    char buffer[8192];
 
-    // Initialize Winsock
     WSAStartup(MAKEWORD(2,2), &wsa);
 
-    // Create socket
     server_socket = socket(AF_INET, SOCK_STREAM, 0);
 
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = INADDR_ANY;
     server.sin_port = htons(PORT);
 
-    // Bind
     bind(server_socket, (struct sockaddr *)&server, sizeof(server));
-
-    // Listen
     listen(server_socket, 3);
-    printf("Server running on http://localhost:%d\n", PORT);
+
+    printf("Server running at http://localhost:%d\n", PORT);
 
     c = sizeof(struct sockaddr_in);
 
@@ -37,27 +33,46 @@ int main() {
         memset(buffer, 0, sizeof(buffer));
         recv(client_socket, buffer, sizeof(buffer), 0);
 
-        // Extract POST body
-        char *data = strstr(buffer, "\r\n\r\n");
-        if (data != NULL) {
-            data += 4;
+        // CASE 1: Browser opened localhost → serve UI
+        if (strstr(buffer, "GET / ") != NULL) {
 
-            FILE *fp = fopen("feedback.txt", "a");
-            fprintf(fp, "%s\n", data);
+            FILE *fp = fopen("index.html", "r");
+            char html[8192] = {0};
+            fread(html, 1, sizeof(html), fp);
             fclose(fp);
+
+            char response[9000];
+            sprintf(response,
+                "HTTP/1.1 200 OK\r\n"
+                "Content-Type: text/html\r\n\r\n"
+                "%s", html);
+
+            send(client_socket, response, strlen(response), 0);
         }
 
-        char response[] =
-            "HTTP/1.1 200 OK\r\n"
-            "Content-Type: text/plain\r\n"
-            "Access-Control-Allow-Origin: *\r\n\r\n"
-            "Feedback submitted successfully!";
+        // CASE 2: Form submitted → save feedback
+        else if (strstr(buffer, "POST") != NULL) {
 
-        send(client_socket, response, strlen(response), 0);
+            char *data = strstr(buffer, "\r\n\r\n");
+            if (data) {
+                data += 4;
+                FILE *fp = fopen("feedback.txt", "a");
+                fprintf(fp, "%s\n", data);
+                fclose(fp);
+            }
+
+            char response[] =
+                "HTTP/1.1 200 OK\r\n"
+                "Content-Type: text/plain\r\n\r\n"
+                "Feedback submitted successfully!";
+
+            send(client_socket, response, strlen(response), 0);
+        }
+
         closesocket(client_socket);
     }
 
-    closesocket(server_socket);
     WSACleanup();
     return 0;
 }
+
