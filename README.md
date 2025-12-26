@@ -22,34 +22,23 @@ This system allows students to submit feedback through a web-based form. The sub
 
 ---
 
-## 📂 Project Structure
-student-feedback-system-c/
-│
-├── frontend/
-│ ├── index.html – Feedback form user interface
-│ ├── style.css – Styling, layout, and design
-│ └── script.js – API communication logic
-│
-└── backend/
-└── server.c – C backend server using Winsock
-
-▶️ How to Run the Project (Windows – Easy Steps)
+## ▶️ How to Run the Project 
 
 1. Open Command Prompt and navigate to the backend folder.
-2. 
-3. Compile the backend server using GCC:
+    
+2. Compile the backend server using GCC:
    gcc server.c -o server -lws2_32
    
-4. Run the server:
+3. Run the server:
    server
    
-5. The server will start running at:
+4. The server will start running at:
    http://localhost:8080  
    
-6. Open the frontend by double-clicking:
+5. Open the frontend by double-clicking:
    frontend/index.html
 
-7. Fill in the feedback form and click Submit.  
+6. Fill in the feedback form and click Submit.  
    The feedback will be sent to the C backend server and stored locally.
 
 ## ⭐ Key Features
@@ -70,4 +59,29 @@ This project demonstrates the practical implementation of:
 - Socket programming in C  
 - HTTP client–server communication  
 - File handling in C  
-- Full-stack development without frameworks 
+- Full-stack development without frameworks
+
+
+▶️ How to Run the Project (Windows)
+
+1. Open Command Prompt and navigate to the backend directory:
+   cd backend
+
+2. Compile the backend server using GCC:
+   gcc server.c -o server -lws2_32
+
+3. Run the server:
+   server
+
+4. The backend server will start at:
+   http://localhost:8080  
+   (Keep the terminal open while using the application.)
+
+5. Open the frontend by opening the following file in a web browser:
+   frontend/index.html
+
+6. Fill in the feedback form and click Submit.  
+   The submitted feedback will be sent to the C backend server and stored locally.
+
+ 👩‍💻Author: Sakshi Rawat
+
